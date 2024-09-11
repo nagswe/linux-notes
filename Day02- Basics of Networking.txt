@@ -1,0 +1,105 @@
+						 		Basics of Networking
+						 		--------------------
+
+Network:
+• Interconnection of two or more devices is called as a network.
+• The communication between two or more interconnected devices is called networking.
+• Establishing connectivity between devices with the help of Hub/Switch/Access Point for Data Communication
+
+Types of Networks:
+
+• LAN-Local Area Network
+• MAN-Metropolitan Area Network
+• WAN-Wide Area Network
+
+LAN:
+
+• Local Area Networks are used to connect Interconnection of PCs and other Network devices that are very close together in a limited area such as a floor of a building, a building itself or with in a campus.
+
+MAN:
+
+• Metropolitan Area Network are used to connect networking devices that may span around the entire city.
+
+WAN:
+
+• Wide Area Networks which connects two or more LANs present at different geographical locations.
+
+Internet:
+
+• Internet is a massive network of networks,a networking infrastructure.
+• It connects millions of computers together globally,forming a network in which any computer can communicate with any other computer as long as they are both connected to the Internet.
+
+Network Topology:
+
+• Bus Topology
+• Ring Topology
+• Mesh Topology
+• Star Topology
+
+Setting up a Network:
+
+• Network Interface Card(NIC)
+• Media (Cable/Wi-Fi)
+• Network Devices (router/switch/firewall)
+
+
+Network Interface Card (NIC):
+
+• NIC is the interface between the computer and the network
+• It is also known as the Lan card or Ethernet card
+
+• Ethernet cards have a unique 48bit address calledas MAC(Media Access control) address
+ - MAC address is also called as Physical address or hardware address
+ - The 48bit MAC address is represented as 12Hexa-decimal digits
+ - Example:34-97-F6-33-90-82
+
+• Network cards are available in different speeds
+ - Ethernet(10Mbps)
+ - FastEthernet(100Mbps)
+ - GigabitEthernet(1000Mbps)
+
+Media:
+• The purpose of the media is to transport bits from one machine to another.
+
+Types of Twisted Paircables:
+
+Category	DTR		Purpose		Connector
+-------		-------		------------	---------
+CATS		lO0Mbps		FastEthernet	RJ45
+
+CATSe 		500Mbps				RJ45
+
+CAT6		1000Mbps	GigabitEthernet	RJ45
+
+Networking Devices:
+
+• Switch
+ - It is a hardware device that centralizes communications between wired devices connected with in a LAN
+
+• Wireless Access Point
+ - It is a hardware device that centralizes communications between wireless and wired devices with in a LAN
+
+• Router
+ - It is a device which enables communication between two or more different logical networks.
+
+• Firewall
+ - It is a device which protects the network from un-authorized access
+ - It allows and denies the network traffic based upon policy configured.
+
+LAN Cable types:
+
+• Straight Through Cable
+• Crossover Cable
+• Rollover Cable
+
+Straight Through Cable:
+ • Generally used for connecting two devices of different types
+
+Crossover Cable:
+ • Generally used for connecting same type of devices.
+
+Rollover Cable:
+ • Generally used for connecting Router console port to Computer COMport.
+
+
+
