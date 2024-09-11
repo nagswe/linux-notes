@@ -1,0 +1,119 @@
+			 		 Redhat Linux 8.8 Demo Class in Telugu
+			 		 -------------------------------------
+					
+Introduction
+-------------------
+1.Self introduction 
+
+About today's topic
+-----------------------------
+1. What is O/S and Categories ?
+2. About Linux and Windows.
+3. History OF UNIX?
+4. ARCHITECTURE OF UNIX/LINUX?
+5. Computer Boot Process.
+6. What is server and client?
+7. What is NIC(Network Interface Card/Controller)?
+8. What is MAC(Media Access Control Address)?
+9. What is IP Adddress
+10. What is difference between Network & Networking?
+11. LAN/MAN/WAN
+
+
+
+SST - MS-DOS
+SMT - Windows client O/S - 98/xp/me/7/10/11
+MMT - Linux/Unix/Windows server OS(2000/2003/2008/2012/2016/2019/2022)
+
+GNU- FSF(Free Software Foundation)
+
+
+About Windows (gui)
+====================
+Why we are using windows more in the market?
+because it's GUI and easy to uderstand and easy to work.
+
+Windows having server operating system and client operating system. 
+
+Client o/s:  Win11/10/8/7/xp
+Server o/s : Win2022/2019/16/12 and etc
+
+About Linux (CLI)
+=================
+
+Why we are using Linux less in the market compared to Windows
+
+because it's CLI and not easy to uderstand and not easy to work when compared to windows.
+
+Linux having server operating system and no specific operating system for personal use
+
+Server OS for web servers, database servers, file servers, email servers and any other type of shared server. Designed to support high-volume and multithreading applications, Linux is well-suited for all types of server applications.
+
+we are going to learn Linux is falover of unix.
+
+its open source kernel and anyone can download linux kernel and devlop new linux.
+
+shell is a command interpriter 
+
+unix/linux
+
+Flavors of unix 
+---------------
+solaris linux 
+ibm-aix
+hp-ux
+sco-ux
+
+Linux is also open source kernel
+
+Flavor of linux
+---------------
+redhat 
+ubuntu 
+centos
+fedora
+suse
+debian
+kali
+
+Windows identified files with extenstion names
+-----------------------------------------------
+.exe
+.dat
+.bat
+.mp3
+.doc
+.txt and etc..
+
+Linux will not identify the file with extension names
+-----------------------------------------------------
+linux identify type file
+
+normal
+Block special file
+device file
+chartacter special file and etc
+
+#touch hello
+
+owner/user |	owner 	 |	others
+      		group		
+
+rw-		r--		r--
+
+Who needs linux course?
+-----------------------
+SAP
+Oracle dba
+Cloud Admins
+AWS
+Devops
+Hadoop
+IBM web aaplication
+Shell scripting
+Phytthon,php,perl,ruby
+
+Basic of linux administration
+-----------------------------
+1.Stadlone administration
+2.Network administrration
