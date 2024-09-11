@@ -1,0 +1,191 @@
+						Understanding IP Addressing - IPv4
+						----------------------------------
+IP Address:
+• IP Address is a Logical Address
+• It is a Network Layer address(Layer3)
+
+• Two Versions of IP:
+ -IP version4 is a 32bitaddress  
+ -IP version6 is a 128bitaddress  
+
+IPversion4:
+
+• Bit is represent by O or 1(i.e.Binary)
+• IP address in binary form (32 bits): 01010101000001011011111100000001 /  00-50-56-C0-00-01(MAC/Physical)
+• 32bits are divided into 4 Octets:
+
+First Octet    Second Octet    Third Octet   Forth Octet
+01010101       00000101          10111111     00000001
+
+• IPaddress in decimal form:
+85.5.191.1
+
+Total IP Address Range 0.0.0.0 - 255.255.255.255
+
+IP Address Classification
+
+IP address are divided into 5 Classes:
+-------------------------------------
+• CLASS	A	
+• CLASS	B	Used in LAN & WAN
+• CLASS	C	
+• CLASS	D}	Reserved for Multicasting
+• CLASS	E}	Reserved for Research & Development
+
+Priority Bit:
+• Priority Bit is used for IP Address classification.
+• Most significant bit(s)from the first octet are selected for Priority Bit(s).
+
+ - ClassA priority bit  is	O
+ - ClassB priority bits are	10
+ - ClassC priority bits are	110
+ - ClassD priority bits are	1110
+ - ClassE priority bits are	1111
+
+Ranges:
+-------	 
+Class-A Range
+
+O.O.O.O to 126.255.255.255 (Class A Total Range)
+
+10.0.0.0 to 10.255.255.255 (Private Range) - non-routable IP on the internet
+
+Default address or LoopBack Addresss : 127.0.0.0  --> 127.255.255.255
+ 
+Class-B Range (Class-B Total Range)
+
+128.0.0.0 to 191.255.255.255 (Class A Total Range)
+
+172.16.0.0 to 172.31.255.255 (Private Range) - non-routable IP on the internet
+
+Class-C Range (Total Range)
+
+192.0.0.0 to 223.255.255.255 (Class A Total Range)
+
+192.168.0.0 to 192.168.255.255 (Private Range) - non-routable IP on the internet
+ 
+Class-D Range
+224.0.0.0 to 239.255.255.255
+ 
+Class-E Range
+240.0.0.0 to 255.255. 255.255
+
+
+Octet Format:
+------------
+• IP address is divided into Network Portion & Host Portion
+
+ - CLASS A is written as N.H.H.H
+
+ - CLASS B is written as N.N.H.H
+
+ - CLASS C is written as N.N.N.H
+
+Network & Broadcast Address:
+----------------------------
+• Network address : IP address with all bits as ZERO in the hostportion.
+• Broadcast address:IP address with all bits as ONES in the hostportion.
+• Valid IP Addresses are between the Network Address and the Broadcast Address.
+• Only Valid IP Addresses are assigned to hosts/clients.
+
+Example-Class-A
+• ClassA:N.H.H.H
+Network Address:0xxxxxxx.00000000.00000000.00000000 BroadcastAddress:Oxxxxxxx.11111111.11111111.11111111
+
+Example-Class-B
+• ClassB:N.N.H.H
+Network Address:l0xxxxxx.xxxxxxxx.00000000.00000000 BroadcastAddress:l0xxxxxx.xxxxxxxx.11111111.11111111
+
+Example-Class-C	
+• ClassC:N.N.N.H
+Network Address:llOxxxxx.xxxxxxxx.xxxxxxxx.00000000 BroadcastAddress:ll0xxxxx.xxxxxxxx.xxxxxxxx.11111111
+
+IP Address	NetworkAddress and Broadcast Address
+----------	------------------------------------
+120.1.1.1	120.0.0.0 and 120.255.255.255
+
+172.16.1.1	172.16.0.0 and 172.16.255.255
+
+10.100.1.10	10.0.0.0 and 10.255.255.255
+
+192.168.1.10	192.168.1.0 and 192.168.1.255
+
+150.10.1.1	150.10.0.0 and 150.10.255.255
+
+Identifying Valid IP Address:
+-----------------------------	
+
+IPAddress		ValidAddress
+----------		------------    
+119.1.1.1		Yes
+172.17.255.255		No
+11.1.0.0		Yes
+195.255.0.255		No
+142.10.0.0		Yes
+
+Subnet Mask:
+• Subnet Mask differentiates the Network and Host portions of an IPaddress
+• Represented with all l's in the network portion and with all O's in the host portion.
+
+Subnet Mask-Examples:
+---------------------	
+• Class A : N.H.H.H 11111111.00000000.00000000.00000000
+Default SubnetMask for ClassA is 255.0.0.0
+
+• Class B:N.N.H.H
+11111111.11111111.00000000.00000000
+Default SubnetMask for ClassB is 255.255.0.0
+
+• Class C:N.N.N.H
+11111111.11111111.11111111.00000000
+Default SubnetMask for ClassC is 255.255.255.0
+
+Default subnet mask:
+--------------------
+IPAddress	Default subnetmask
+---------	------------------
+17.1.1.1	255.0.0.0
+202.1.0.18	255.255.255.0
+190.10.1.1	255.255.0.0
+102.10.1.10	255.0.0.0
+192.0.0.1	255.255.255.0
+
+How Subnet Mask Works?
+
+IP Address	:192.168.1.1
+Subnet Mask	:255.255.255.0
+
+Private IP Address:
+-------------------
+• There are certain addresses in each class of IP address that are reserved for Private Networks. 
+These addressesare called private addresses.
+
+• These addresses are not Routable(or)valid on the Internet.
+
+Class A
+10.0.0.0 to 10.255.255.255
+ 
+ClassB
+172.16.0.0 to 172.31.255.255
+
+ClassC
+192.168.0.0 to 192.168.255.255
+
+
+
+Public IPAddress v/s Private IP Address:
+----------------------------------------
+
+Public IP Address			 Private IP Address
+------------------			 -------------------
+• Used on the internet		 	• Used within the Organization
+(i.e Public Network)		  	 (i.e Private Network or LAN)
+
+• it should be unique over the	 	• it should be unique within the LAN
+internet			  	 or Organization
+
+• Assigned by the inter service	 	• Assigned by Network Administrator
+provider.	
+
+• Need to purchased from internet  	•   	
+Service Provider.
