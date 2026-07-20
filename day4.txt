@@ -1,0 +1,48 @@
+sudo useradd -m ravi
+sudo passwd ravi
+su - ravi
+whoami
+mkdir project
+echo $SHELL
+cat /etc/shells
+cat /etc/group
+cat /etc/shadow
+cat /etc/passwd
+tail /etc/passwd
+cat /etc/passwd | grep -i ravi
+sudo useradd -u 1050 -c admin -s /bin/bash Subbu
+crontab -l
+crontab -l -u ravi
+crontab -lu ravi
+*/1 * * * * mkdir /root/devops
+
+GROUPS PERMISSIONS
+------------------
+
+groupadd mygrp
+
+groupadd -g 1515 mygrp2
+
+tail /etc/group
+
+groupmod -n Mygroup mygrp
+
+useradd u1
+useradd u2
+useradd u3
+
+tail /etc/passwd
+
+useradd to group
+
+gpasswd -M u1,u2 Mygroup
+
+gpasswd -a u3 Mygroup
+
+gpasswd -A u3 Mygroup this command is used add group leader
+
+tail /etc/gshadow
+
+gpasswd -d u2 Mygroup
+
+groupdel mygrp2
