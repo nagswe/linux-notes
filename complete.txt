@@ -1,0 +1,540 @@
+LINUX 
+
+sudo useradd -m u1
+sudo useradd -m u2
+sudo useradd -m u3
+sudo passwd ravi
+su - ravi
+whoami
+mkdir project
+echo $SHELL
+cat /etc/shells
+cat /etc/group
+cat /etc/shadow
+cat /etc/passwd
+tail /etc/passwd
+cat /etc/passwd | grep -i ravi
+sudo useradd -u 1050 -c admin -s /bin/bash Subbu
+crontab -l
+crontab -l -u ravi
+crontab -lu ravi
+*/1 * * * * mkdir /root/devops
+
+GROUPS PERMISSIONS
+------------------
+
+groupadd mygrp
+
+groupadd -g 1515 mygrp2
+
+tail /etc/group
+
+groupmod -n Mygroup mygrp
+
+useradd u1
+useradd u2
+useradd u3
+
+tail /etc/passwd
+
+useradd to group
+
+gpasswd -M u1,u2 Mygroup
+
+gpasswd -a u3 Mygroup
+
+gpasswd -A u3 Mygroup this command is used add group leader
+
+tail /etc/gshadow
+
+gpasswd -d u2 Mygroup
+
+groupdel mygrp2
+
+CONTROLLING ACCESS TO FILES
+--------------------------
+sudo useradd -m u1
+
+su - u1
+
+ls
+
+touch {1..10}
+ls
+
+su - root
+
+which ls
+
+which passwd
+
+which cat
+
+ls -l /usr/bin/cat
+
+ls -l /usr/bin/passwd
+
+where s is there there it be setuserid permission is there
+
+su - u1
+sudo passwd u1
+
+
+ls -l /usr/bin/mkdir
+
+chmod u-s /usr/bin/passwd
+
+chmod u+s /usr/bin/passwd
+
+chmod u+s /usr/bin/mkdir
+
+mkdir /sgid
+
+cd /
+
+ls
+
+cd sgid
+
+touch p1{1..3}
+
+ls
+
+chgrp Mygroup sgid
+
+chmod 777 sgid
+
+su - u1
+
+chmod g+s sgid/
+
+chmod g-s sgid/
+
+cd /
+
+mkdir data
+
+chmod 777 sgid
+
+chmod o+t sgid/ sticky bit
+
+ACL ACCESS CONTROL LIST
+-----------------------
+mkdir /acl
+
+cd /
+
+ls -ld acl
+
+getfacl acl
+
+chmod 777 acl
+
+ls -ls acl
+
+cd /acl
+
+touch aws{1..5}
+
+su - u1
+
+cd /acl
+
+su - root
+
+setfacl -m u1:rx /acl
+
+setfacl -m u:p1:rx,g:Mygroup:rx /acl
+
+mkdir devops
+
+setfacl -m u:u1:rx devops
+
+setfacl -x u:u1 /acl
+
+setfacl -x g:Mygroup /acl
+
+setfacl -m u:u1:rwx,u:p1:rx,u:u2:rx,g:Mygroup:rx acl
+
+getfacl acl
+
+setfacl -b acl/
+
+setfacl -Rm u:u1:rx acl
+
+setfacl -Rx u:u1:rx acl
+
+visudo 
+
+su - Nagesh
+
+fdisk -l
+
+lslbk
+
+nagesh ALL=(ALL)  ALL
+
+%test  ALL-(ALL) NOPASSWD: ALL
+
+%Mygroup ALL=(ALL)  ALL
+
+nagesh ALL=(ALL)  /usr/sbin/parted
+
+sudo parted -l
+
+nagesh ALL=(ALL)  /usr/sbin/parted, /usr/sbin/fdisk
+
+nagesh ALL=(ALL)  ALL, !/usr/sbin/parted
+
+SELINUX
+-------
+cat /etc/selinux/config
+
+vi /etc/selinux/config
+
+SELINUX=permissive
+
+cat /etc/sysconfig/selinux
+
+getenforce
+
+setenforce 0
+
+getenforce
+
+sestatus
+
+setenforce 1
+
+TOUCH HELLO
+
+ls -Z hello
+
+MKDIR DOCUMENTS
+
+ls -ldZ Documents for directory
+
+SU - ARJUN
+
+LS
+
+PWD
+
+TOUCH HI
+
+LS -z hi
+
+mkir mydir
+
+cd mydir
+
+touch a{1..5}
+
+chcon -t public_content_t hello
+
+chcon -R -t public_content_t mydir
+
+restorecon -v hello
+
+restore  -Rv mydir
+
+SELINUX : Enforcing Disabled/permissive 100 percent risk
+
+policy/context -- reduce the risk 40 percent risk
+
+
+Booleans - reduce the risk 20 percent
+
+getsebool -a   | grep ftp
+
+getsebool -a | grep http
+
+setsebool ftpd_anon_write on
+
+setsebool ftpd_full_access
+
+LVM (LOGICAL VOLUME MAMANGEMENT)
+-----------------------------
+
+fdisk -l
+
+parted -l
+
+fdisk /dev/sdc
+
+press p
+
+n
+
+enter
+
+enter
+
++10.2GB
+
+p
+
+n
+
+p
+
+enter
+
+enter
+
+press w
+
+fdisk -l
+
+fdisk /dev/sda
+
+press p
+
+m
+
+t
+
+1
+
+L
+
+8e
+
+p
+
+t
+
+2
+
+8e
+
+p
+
+fdisk -l
+
+
+pvcreate /dev/sdc1
+
+pvs
+
+pvdisplay
+
+vgcreate myvg /dev/sdc1
+
+vgs
+
+vgdisplay
+
+lvcreate -L 1024MB -n mylv myvg
+
+lvdisplay
+
+lvs
+
+mkfs.ext4 /dev/myvg/mylv
+uuid ="" /mydata  ext4 defaults 0  0
+
+mkdir /mydata
+
+vi /etc/fstab
+
+/dev/myvg/mylv   /mydata  ext4 defaults 0  0
+
+lsblk
+
+mount -a
+
+cd /mydata
+
+ll
+
+df -h /mydata/
+
+ll
+
+vim /etc/fstab
+
+uuid = id  /mydata default 0 0
+
+ll
+
+cat >abc
+
+
+
+
+
+touch LVM{1..10}
+
+df -h /mydata/
+
+ll
+
+swap space management
+---------------------
+free -m
+
+free -h
+
+fdisk -l
+
+fdisk /dev/sda
+
+p
+
+n
+
+p
+
+1
+
++2GB
+
+P
+
+m for help
+
+t
+
+L
+
+82
+
+P
+
+w
+
+fdisk -l
+
+mkswap /dev/sda1
+
+free -s
+
+free -h
+
+parted -l
+
+swapon /dev/sda1
+
+swapon -s
+
+free -h
+
+vi /etc/fstab
+
+/dev/sda1  swap  swap defaults 0 0
+
+mount -a
+
+blkid /dev/sda1
+
+uuid = 
+
+vi /etc/fstab
+
+free -m
+
+free -h
+
+swapoff /dev/sda1
+
+free -h
+
+swapon /dev/sda1
+
+swapon -a
+
+free -h
+
+free -m
+
+vi /etc/fstab
+
+delete uuid
+
+mount -a
+
+free -h
+
+swapoff /dev/sda1
+
+free -h
+
+fdisk /dev/sda
+
+d
+
+w
+
+fdisk -l
+
+parted -l
+
+dd if=/dev/urandom of=/swap-file bs=1M count=1024
+
+du -h /swap-file
+
+ls -l /swap-file
+
+free -h
+
+chmod 600 /swap-file
+
+mkswap -f /swap-file
+
+free -h
+
+swapon -f /swap-file
+
+free -h
+
+vi /etc/fstab
+
+/swap-file  swap swap default 0 0
+
+mount -a
+
+free -h
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
