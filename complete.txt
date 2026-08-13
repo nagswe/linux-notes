@@ -53,74 +53,117 @@ groupdel mygrp2
 
 CONTROLLING ACCESS TO FILES
 --------------------------
-sudo useradd -m u1
+
+SETUID
+------
+which fdisk
+
+ls -l /usr/sbin/fdisk
 
 su - u1
 
-ls
+ls -l /usr/sbin/fdisk
 
-touch {1..10}
-ls
+chmod u+s /usr/sbin/fdisk
+
+chmod u-s /usr/sbin/fdisk
+
+chmod 4755 /usr/sbin/fdisk
+
+SGID
+----
+
+mkdir /mydir
+
+ls -ld /mydir/
+
+cd /mydir/
+
+touch f1 f2 f3
+
+su - u1
+
+touch f4 
 
 su - root
 
-which ls
+chmod 777 /mydir/
 
-which passwd
-
-which cat
-
-ls -l /usr/bin/cat
-
-ls -l /usr/bin/passwd
-
-where s is there there it be setuserid permission is there
-
-su - u1
-sudo passwd u1
-
-
-ls -l /usr/bin/mkdir
-
-chmod u-s /usr/bin/passwd
-
-chmod u+s /usr/bin/passwd
-
-chmod u+s /usr/bin/mkdir
-
-mkdir /sgid
-
-cd /
-
-ls
-
-cd sgid
-
-touch p1{1..3}
-
-ls
-
-chgrp Mygroup sgid
-
-chmod 777 sgid
+ls -ld /mydir/
 
 su - u1
 
-chmod g+s sgid/
+cd /mydir/
 
-chmod g-s sgid/
+touch f4
 
-cd /
+su - root
 
-mkdir data
+groupadd mygrp
 
-chmod 777 sgid
+chgrp mygrp /mydir/
 
-chmod o+t sgid/ sticky bit
+chmod 777 /mydir/
+
+chmod g+s /mydir/
+
+su - u1
+
+cd /mydir
+
+touch f6
+
+su - root
+
+chmod g-s /mydir/
+
+chmod 2777 /mydir/
+
+ls -ld /mydir/
+
+su - u1
+
+touch f8
+
+ls -ld /mydir/
+
+su - root
+
+ls -ld /mydir/
+
+chmod o+t /mydir/
+
+ls -ld /mydir
+
+cd /mydir/
+
+touch f10
+
+su - u1
+
+rm f10
+
+su - root
+
+chmod o-s /mydir/
+
+ls -ld /mydir/
+
+su - u1
+
+rm f3
+
+su - root
+
+chmod 1777 /mydir/
+
+
 
 ACL ACCESS CONTROL LIST
 -----------------------
 mkdir /acl
+
+ls -ld /ac/
 
 cd /
 
@@ -140,9 +183,25 @@ su - u1
 
 cd /acl
 
+rm f1
+
 su - root
 
 setfacl -m u1:rx /acl
+
+getfacl /acl/
+
+su - u1
+
+cd /acl/
+
+touch f1 f2 f3
+
+rm f1
+
+su - root
+
+tail /etc/group
 
 setfacl -m u:p1:rx,g:Mygroup:rx /acl
 
@@ -208,7 +267,7 @@ setenforce 1
 
 TOUCH HELLO
 
-ls -Z hello
+ls -Z hello.txt
 
 MKDIR DOCUMENTS
 
@@ -234,7 +293,7 @@ chcon -t public_content_t hello
 
 chcon -R -t public_content_t mydir
 
-restorecon -v hello
+restorecon -v files1.txt
 
 restore  -Rv mydir
 
@@ -370,6 +429,163 @@ df -h /mydata/
 
 ll
 
+EXTENDED PV TO THE VG
+---------------------
+
+fdisk -l
+
+fdisk /dev/sda
+
+p
+
+m 
+
+t
+
+2
+
+L
+
+8e
+
+p
+
+w
+
+fdisk -l
+
+pvs
+
+pvcreate /dev/sda2
+
+pvs
+
+vgextend myvg /dev/sda2
+
+vgs
+
+lvs
+
+lvextend -L +1024M /dev/myvg/mylv
+
+lvs
+
+df -h
+
+resize2fs /dev/myvg/mylv
+
+df -h
+
+cd /mydata
+
+ll
+
+touch aws{1..10}
+
+cd /root/
+
+lvs
+
+df -h
+
+unmount /mydata
+
+e2fsck -f /dev/myvg/mylv
+
+resize2fs /dev/myvg/mylv 300M
+
+lvreduce -L -300M /dev/myvg/mylv
+
+y
+
+mount /dev/myvg/mylv /mydata
+
+df -h
+
+resize2fs /dev/myvg/mylv
+
+df -h
+
+pvs
+
+lvs
+
+lvdisplay
+
+pvdisplay
+
+cd /mydata
+
+ll
+
+cat >hello
+
+cd /root/
+
+pvmove /dev/sda1 /dev/sda2
+
+pvdisplay
+
+cd /mydata/
+
+cd /root/
+
+unmount /mydata
+
+df -h
+
+mount /dev/myvg/mylv /mydata/
+
+pvdisplay
+
+pvs
+
+lvs
+
+vgreduce myvg /dev/sda1
+
+pvs
+
+unmount /mydata
+
+lvremove /dev/myvg/mylv
+
+lvs
+
+vgs
+
+pvremove /dev/sda2
+
+vgs
+
+vgremove myvg
+
+vgs
+
+pvs
+
+pvremove /dev/sda2
+
+pvs
+
+pvremove /dev/sda2
+
+pvs
+
+vgs
+
+lvs
+
+pvcreate /dev/sda1
+
+pvs
+
+vgcreate myvg -s 16 /dec/sda1
+
+vgdisplay myvg
+
+
+
 swap space management
 ---------------------
 free -m
@@ -497,11 +713,114 @@ mount -a
 free -h
 
 
+cockpit-firewall
+----------------
+
+firewall-cmd --state
+
+firewall-cmd --list-all
+
+firewall-cmd --add-service=ftp --permanent
+
+firewall-cmd --list-all
+
+firewall-cmd --reload
+
+firewall-cmd --remove
+
+firewall-cmd --add-port=21/tcp --permanent
+
+firewall-cmd --remove-port=21/tcp --permanent
+
+firewall-cmd --reload
+
+firewall-cmd --remove-port=21/tcp --permanent
+
+systemctl stop firewall.service
+
+systemctl start firewall.service
+
+systemctl enable firewall.service
+
+systemctl disaable firewall.service
+
+systemctl is-active firewall.service
+
+systemctl status firewall.service
+
+firewall-cmd --add-service=ftp --add-service=http --add-service=https --permanent
+
+firewall-cmd --add-port=21/tcp --add-port=20/tcp --add-port=443/tcp --permanent
+
+systemctl enable cockpit.socket --now
+
+managing installed services
+---------------------------
+
+systemctl list-units --type service --all
+
+chkconfig cockpit off
+
+chkconfig cockpit on
 
 
 
+MANAGING INTALLING SERVICES
+---------------------------
 
+systemctl status cockpit.socket 
 
+systemctl stop cockpit.socket 
+
+systemctl status cockpit.socket
+
+systemctl restart cockpit.socket
+
+systemctl status cockpit.socket
+
+systemctl reload cockpit.socket reloads configuration
+
+systemctl list-units --type service --all
+
+chkconfig cockpit off
+
+chkconfig cockpit on
+
+systemctl enable cockpit
+
+systemctl disable cockpit
+
+backup restore
+---------------
+cd /opt
+
+ll
+
+rm -rf *
+
+tar -cvf /opt/etcbackup.tar /etc/
+
+cd /opt
+
+ll
+
+du -h etcbackup.tar
+
+du -h /etc/
+
+gzip /opt/etcbackup.tar
+
+ll
+
+du -h etcbackup.tar.gz
+
+ls -l etcbackup.tar.gz
+
+gunzip etcbackup.tar.gz
+
+ll
+
+tar -zcvf etcbackup.tar.gz /etc
 
 
 
